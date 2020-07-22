@@ -231,26 +231,38 @@ namespace TTNETAPI_Sample_Console_AlgoOrderRouting
                     (BuySell)o.Side,
                     Quantity.FromDecimal(orderInstrument, o.Qty));
 
-                OrderProfile op = m_tradeSubscription.Orders[o.ExternalOrderId].GetOrderProfile();
-                op.Action = OrderAction.Change;
-                op.LimitPrice = Price.FromTick(orderInstrument, o.LimitPriceTicks);
-                op.OrderQuantity = Quantity.FromDecimal(orderInstrument, o.Qty);
-                op.Side = (o.Side > 0) ? OrderSide.Sell : OrderSide.Buy;
-                op.OrderType = OrderType.Limit;
-                op.Account = m_accounts.ElementAt(0);
-                op.OrderTag = o.InternalOrderId;
-                m_tradeSubscription.SendOrder(op);
-
-                Console.WriteLine("Change price from {0} to {1}", o.LimitPriceTicks, op.LimitPrice);
-
-                if (!m_tradeSubscription.SendOrder(op))
+                if (m_tradeSubscription.Orders.ContainsKey(o.ExternalOrderId))
                 {
-                    Console.WriteLine("ORDER UPDATE ERROR: " + o.Alias + " " + op.OrderQuantity.ToString() + "@" + op.LimitPrice.ToString() + " SOK=" + op.SiteOrderKey);
+                    OrderProfile op = m_tradeSubscription.Orders[o.ExternalOrderId].GetOrderProfile();
+                    op.Action = OrderAction.Change;
+                    op.LimitPrice = Price.FromTick(orderInstrument, o.LimitPriceTicks);
+                    op.OrderQuantity = Quantity.FromDecimal(orderInstrument, o.Qty);
+                    //m_tradeSubscription.SendOrder(op);
+
+                    Console.WriteLine("Change price from {0} to {1}", o.LimitPriceTicks, op.LimitPrice);
+
+                    if (!m_tradeSubscription.SendOrder(op))
+                    {
+                        Console.WriteLine("ORDER UPDATE ERROR: " + o.Alias + " " + op.OrderQuantity.ToString() + "@" + op.LimitPrice.ToString() + " SOK=" + op.SiteOrderKey);
+                    }
+                    else
+                    {
+                        Console.WriteLine("ORDER UPDATED: " + o.Alias + " " + op.OrderQuantity.ToString() + "@" + op.LimitPrice.ToString() + " SOK=" + op.SiteOrderKey);
+                    }
                 }
+
                 else
                 {
-                    Console.WriteLine("Send change order succeeded.");
+                    Console.WriteLine("ORDER ID NOT FOUND: {0}\nAvailable Keys:", o.ExternalOrderId, m_tradeSubscription.Orders.Keys);
+
+                    List<string> keyList = new List<string>(this.m_tradeSubscription.Orders.Keys);
+
+                    foreach (string key in keyList)
+                    {
+                        Console.WriteLine(key);
+                    }
                 }
+
             }
 
             catch (Exception ex)
@@ -943,15 +955,19 @@ namespace TTNETAPI_Sample_Console_AlgoOrderRouting
                     GatewayTimestamp = Timestamp.FromDateTime(Clock.UtcNow()),
                 };
                 _natsOrders.Send(ev);
-                Console.WriteLine("\nOrderUpdated [{0}] {1}: {2} ID: {3} TYPE: {4} NAME: {5} ALIAS: {6}", 
-                    e.NewOrder.SiteOrderKey, 
+                if (e.NewOrder.IsSynthetic)
+                {
+                    Console.WriteLine("ORDER UPDATED [{0}] ALIAS: {1} {2}: {3} ID: {4} TYPE: {5} NAME: {6}", 
+                    e.NewOrder.SiteOrderKey,
+                    e.NewOrder.InstrumentKey.Alias,
                     e.NewOrder.BuySell, 
                     e.NewOrder.ToString(), 
                     e.NewOrder.InstrumentKey.ProductKey.MarketId.ToString(), 
                     e.NewOrder.InstrumentKey.ProductKey.Type.ToString(),
-                    e.NewOrder.InstrumentKey.ProductKey.Name.ToString(),
-                    e.NewOrder.InstrumentKey.Alias.ToString()                   
+                    e.NewOrder.InstrumentKey.ProductKey.Name.ToString()
                     );
+                }
+                
             }
                 
         }
