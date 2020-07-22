@@ -239,7 +239,7 @@ namespace TTNETAPI_Sample_Console_AlgoOrderRouting
                     op.OrderQuantity = Quantity.FromDecimal(orderInstrument, o.Qty);
                     //m_tradeSubscription.SendOrder(op);
 
-                    Console.WriteLine("Change price from {0} to {1}", o.LimitPriceTicks, op.LimitPrice);
+                    Console.WriteLine("Change price from {0} to {1}", o.LimitPriceTick`s, op.LimitPrice);
 
                     if (!m_tradeSubscription.SendOrder(op))
                     {
