@@ -31,10 +31,10 @@ namespace TTSETUPSDK_Sample_Console
             try
             {
                 //Add your app secret Key here . The app_key looks like : 00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000
-                string appSecretKey = "";
+                string appSecretKey = "401e4f94-3714-8c8b-5cf4-b28ec27292e1:4b20046d-9d94-77ad-2681-6d28b18182ab";
 
                 //Set the environment the app needs to run in here
-                tt_setup_sdk.ServiceEnvironment environment = tt_setup_sdk.ServiceEnvironment.DevCert;
+                tt_setup_sdk.ServiceEnvironment environment = tt_setup_sdk.ServiceEnvironment.UatCert;
 
                 tt_setup_sdk.TTSetupSDKOptions apiConfig = new tt_setup_sdk.TTSetupSDKOptions(
                      environment,

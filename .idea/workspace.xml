@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5571877c-6407-48c1-ad4c-fcc37e462497" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/TT_SETUP_SDK/TTSETUPSDK_Sample_Console/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TT_SETUP_SDK/TTSETUPSDK_Sample_Console/Program.cs" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/TT_SETUP_SDK/TTSETUPSDK_Sample_Console/Program.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="113">
+              <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/TT_SETUP_SDK/TTSETUPSDK_Sample_Console/Program.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/TT_Samples.iml" />
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/.idea/misc.xml" />
+        <option value="$PROJECT_DIR$/.idea/modules.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="491" />
+    <option name="y" value="249" />
+    <option name="width" value="2598" />
+    <option name="height" value="1733" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="TT_Samples" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TT_Samples" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TT_Samples" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TT_Samples" type="462c0819:PsiDirectoryNode" />
+              <item name="TT_NET_CLIENT_SIDE" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TT_Samples" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TT_Samples" type="462c0819:PsiDirectoryNode" />
+              <item name="TT_SETUP_SDK" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TT_Samples" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TT_Samples" type="462c0819:PsiDirectoryNode" />
+              <item name="TT_SETUP_SDK" type="462c0819:PsiDirectoryNode" />
+              <item name="TTSETUPSDK_Sample_Console" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TT_Samples" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TT_Samples" type="462c0819:PsiDirectoryNode" />
+              <item name="TT_SETUP_SDK" type="462c0819:PsiDirectoryNode" />
+              <item name="TTSETUPSDK_Sample_Console" type="462c0819:PsiDirectoryNode" />
+              <item name="Properties" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../xmonetae_ursa" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5571877c-6407-48c1-ad4c-fcc37e462497" name="Default Changelist" comment="" />
+      <created>1591274798796</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1591274798796</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="491" y="249" width="2598" height="1733" extended-state="0" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49968132" visible="true" weight="0.1453125" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.24973656" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Debug" order="2" weight="0.39961758" />
+      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="5" />
+      <window_info anchor="bottom" id="Version Control" order="6" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32950923" />
+      <window_info anchor="bottom" id="Python Console" order="8" weight="0.32950923" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info active="true" anchor="right" x="101" y="483" width="3043" height="509" id="Run" order="3" sideWeight="0.50031865" side_tool="true" visible="true" weight="0.47224057" />
+    </layout>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/TT_SETUP_SDK/TTSETUPSDK_Sample_Console/Program.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

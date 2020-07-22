@@ -33,9 +33,9 @@ namespace TTNETAPI_Sample_Console_PriceDetailedDepthSubscription_EPIQ
 
         // Instrument Information 
         private readonly string m_market = "CME";
-        private readonly string m_product = "GE";
+        private readonly string m_product = "CL";
         private readonly string m_prodType = "Future";
-        private readonly string m_alias = "GE mar29";
+        private readonly string m_alias = "CL Dec20";
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -21,12 +21,15 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using tt.messaging.order.enums;
 using tt_net_sdk;
+using tt_net_sdk.tt_trailing_limit;
 
 namespace TTNETAPI_Sample_Console_Autospread
 {
     public class TTNetApiFunctions
     {
+        
         // Declare the API objects
         private TTAPI m_api = null;
         private InstrumentCatalogSubscription m_instCatSubscription = null;
@@ -36,9 +39,11 @@ namespace TTNETAPI_Sample_Console_Autospread
 
         // Instrument Information 
         private readonly MarketId m_marketId = MarketId.CME;
-        private readonly string m_product = "GE";
-        private readonly string m_alias1 = "GE Jun20";
-        private readonly string m_alias2 = "GE Sep20";
+        private readonly string m_product = "NG";
+        private readonly string m_alias1 = "NG Dec20";
+        private readonly ProductType m_type1 = ProductType.Future;
+        private readonly string m_alias2 = "NG Mar21-Apr21 Calendar";
+        private readonly ProductType m_type2 = ProductType.MultilegInstrument;
         private static bool subscriptionReady = false;
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -107,16 +112,16 @@ namespace TTNETAPI_Sample_Console_Autospread
             WorkerDispatcher dispatcher = new WorkerDispatcher("InstCat");
             dispatcher.Run();
 
-            InstrumentCatalogSubscription asSpreads = new InstrumentCatalogSubscription(Product.Autospreader,dispatcher);
+            InstrumentCatalogSubscription asSpreads = new InstrumentCatalogSubscription(tt_net_sdk.Product.Autospreader,dispatcher);
             asSpreads.OnData += OnSpreadDefinitionNotification;
             asSpreads.Start();
 
 
         }
 
-        Instrument FindInstrument(string product, string alias)
+        Instrument FindInstrument(ProductType product_type, string product, string alias)
         {
-            InstrumentLookup instLookup = new InstrumentLookup(tt_net_sdk.Dispatcher.Current,m_marketId, ProductType.Future,product,alias);
+            InstrumentLookup instLookup = new InstrumentLookup(tt_net_sdk.Dispatcher.Current,m_marketId, product_type, product,alias);
             ProductDataEvent einst = instLookup.Get();
             if(einst != ProductDataEvent.Found)
             {
@@ -144,7 +149,7 @@ namespace TTNETAPI_Sample_Console_Autospread
                         subscriptionReady = true;
                         var newInst = CreateSpread();
                         var updatedInst = UpdateSpread(newInst);
-                        DeleteSpread(updatedInst);
+//                        DeleteSpread(updatedInst);
                     }
                     break;
                 case ProductDataEvent.InstrumentDeleted:
@@ -179,8 +184,8 @@ namespace TTNETAPI_Sample_Console_Autospread
             };
 
             // first leg
-            var inst1 = FindInstrument(m_product,m_alias1);
-            var leg1 = new SpreadLegDetails(inst1,5,8.5M)
+            var inst1 = FindInstrument(m_type1,m_product,m_alias1);
+            var leg1 = new SpreadLegDetails(inst1,1,1)
             {
                 ActiveQuoting = true,
                 IsLeanIndicative = false,
@@ -189,8 +194,8 @@ namespace TTNETAPI_Sample_Console_Autospread
             spreadReq.AppendLeg(leg1);
 
             // second leg
-            var inst2 = FindInstrument(m_product,m_alias2);
-            var leg2 = new SpreadLegDetails(inst2,-1,-2)
+            var inst2 = FindInstrument(m_type2,m_product,m_alias2);
+            var leg2 = new SpreadLegDetails(inst2,-1,-1)
             {
                 ActiveQuoting = true,
                 IsLeanIndicative = true,
@@ -214,10 +219,9 @@ namespace TTNETAPI_Sample_Console_Autospread
             ASReturnCodes rtnCode;
             Console.WriteLine("Update the new created SPREAD");
             SpreadDetails spreadReq = instrument.GetSpreadDetails();
-            spreadReq.UserDefinedDenominator = 20;
-            spreadReq.UserDefinedNumerator = 1;
             var legChange = spreadReq.GetLeg(1);
-            legChange.PriceMultiplier = -3;
+            legChange.SpreadRatio = -4;
+            legChange.PriceMultiplier = -4;
             spreadReq.UpdateLeg(1,legChange);
 
             // Update the spread to the spread manager and Save the ASE instrument in TT system.

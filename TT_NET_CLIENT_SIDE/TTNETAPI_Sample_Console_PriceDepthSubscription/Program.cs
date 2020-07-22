@@ -31,7 +31,7 @@ namespace TTAPI_Sample_Console_PriceDepthSubscription
             try
             {
                 // Add your app secret Key here . The app_key looks like : 00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000
-                string appSecretKey = "Add your app secret key here";
+                string appSecretKey = "250805d9-ac38-ff60-fa15-12b474217a2b:e3cd68c0-ee14-e0d3-e38e-8fa47c219243";
 
                 // Set the environment the app needs to run in here
                 tt_net_sdk.ServiceEnvironment environment = tt_net_sdk.ServiceEnvironment.UatCert;
