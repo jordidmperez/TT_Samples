@@ -83,6 +83,7 @@ namespace TTNETAPI_Sample_Console_AlgoOrderRouting
         private readonly string m_alias = "NGHJ";
 
         private readonly string m_alias_2 = "CLZZ";
+        private readonly string m_alias_3 = "BRNZZ";
 
         private readonly ulong m_instrumentId = 17173196713478330956;
         private IStanSubscription _orderReceivedSub;
@@ -239,7 +240,7 @@ namespace TTNETAPI_Sample_Console_AlgoOrderRouting
                     op.OrderQuantity = Quantity.FromDecimal(orderInstrument, o.Qty);
                     //m_tradeSubscription.SendOrder(op);
 
-                    Console.WriteLine("Change price from {0} to {1}", o.LimitPriceTick`s, op.LimitPrice);
+                    Console.WriteLine("Change price from {0} to {1}", o.LimitPriceTicks, op.LimitPrice);
 
                     if (!m_tradeSubscription.SendOrder(op))
                     {
@@ -382,7 +383,7 @@ namespace TTNETAPI_Sample_Console_AlgoOrderRouting
             // Create instrument subscriptions
             CreateInstrumentSubscription(m_market, m_prodType, m_product, m_alias);
             CreateInstrumentSubscription(m_market, m_prodType, m_product, m_alias_2);
-            CreateInstrumentSubscription(m_market, m_prodType, m_product, "BRNZZ");
+            CreateInstrumentSubscription(m_market, m_prodType, m_product, m_alias_3);
 
             // Get the accounts
             m_accounts = m_api.Accounts;
@@ -986,6 +987,13 @@ namespace TTNETAPI_Sample_Console_AlgoOrderRouting
                         m_instrLookupRequest = null;
                     }
 
+                    foreach (KeyValuePair<string, InstrumentLookup> kvp in instrumentLookupDict)
+                    {
+                        var sub = kvp.Value;
+                        sub.OnData -= m_instrLookupRequest_OnData;
+                        sub.Dispose();
+                    }
+
                     if (m_priceSubscription != null)
                     {
                         m_priceSubscription.FieldsUpdated -= m_priceSubscription_FieldsUpdated;
@@ -993,6 +1001,18 @@ namespace TTNETAPI_Sample_Console_AlgoOrderRouting
                         m_priceSubscription.FieldsUpdated -= HandleInsideMarketUpdate;
                         m_priceSubscription.Dispose();
                         m_priceSubscription = null;
+                    }
+
+                    foreach (KeyValuePair<string, PriceSubscription> kvp in priceSubScriptionDict)
+                    {
+                        var sub = kvp.Value;
+                        m_tradeSubscription.OrderUpdated -= m_tradeSubscription_OrderUpdated;
+                        m_tradeSubscription.OrderAdded -= m_tradeSubscription_OrderAdded;
+                        m_tradeSubscription.OrderDeleted -= m_tradeSubscription_OrderDeleted;
+                        m_tradeSubscription.OrderFilled -= m_tradeSubscription_OrderFilled;
+                        m_tradeSubscription.OrderRejected -= m_tradeSubscription_OrderRejected;
+                        m_tradeSubscription.Dispose();
+                        m_tradeSubscription = null;
                     }
 
                     if (m_tradeSubscription != null)

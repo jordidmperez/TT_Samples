@@ -31,10 +31,11 @@ namespace TTNETAPI_Sample_Console_AlgoOrderRouting
             try
             {
                 // Add your app secret Key here. It looks like: 00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000
-                string appSecretKey = "ab8817fb-1d6d-d063-ef97-0e9344df637e:1c3321b1-2e92-8f36-2ee3-0c90c5cfc7eb";
+                //string appSecretKey = "ab8817fb-1d6d-d063-ef97-0e9344df637e:1c3321b1-2e92-8f36-2ee3-0c90c5cfc7eb";
+                //tt_net_sdk.ServiceEnvironment environment = tt_net_sdk.ServiceEnvironment.ProdSim;
 
-                //Set the environment the app needs to run in here
-                tt_net_sdk.ServiceEnvironment environment = tt_net_sdk.ServiceEnvironment.ProdSim;
+                string appSecretKey = "a2d5c54f-5606-e305-528b-4f916a16ca1f:57b8b014-e20a-9365-79b2-2b683aa4954c";
+                tt_net_sdk.ServiceEnvironment environment = tt_net_sdk.ServiceEnvironment.ProdLive;
 
                 tt_net_sdk.TTAPIOptions apiConfig = new tt_net_sdk.TTAPIOptions(
                      environment,
