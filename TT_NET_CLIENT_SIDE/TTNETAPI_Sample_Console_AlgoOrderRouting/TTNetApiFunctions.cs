@@ -381,6 +381,7 @@ namespace TTNETAPI_Sample_Console_AlgoOrderRouting
             ProductType productType = Product.GetProductTypeFromName(m_prodType);
 
             // Create instrument subscriptions
+            CreateInstrumentSubscription(m_market, m_prodType, m_product, "NG_HJ");
             CreateInstrumentSubscription(m_market, m_prodType, m_product, m_alias);
             CreateInstrumentSubscription(m_market, m_prodType, m_product, m_alias_2);
             CreateInstrumentSubscription(m_market, m_prodType, m_product, m_alias_3);
@@ -503,7 +504,6 @@ namespace TTNETAPI_Sample_Console_AlgoOrderRouting
                 Alias = e.Fields.Instrument.InstrumentDetails.Alias,
             };
             _nats.SendInsideMarketPersisted(e.Fields.Instrument.Product.Alias, e.Fields.Instrument.Product.Market.MarketId, e.Fields.Instrument.Product.Type, ev.ToByteArray());
-
         }
 
             public void HandlePriceDepthUpdate(object sender, FieldsUpdatedEventArgs e)
@@ -1006,13 +1006,19 @@ namespace TTNETAPI_Sample_Console_AlgoOrderRouting
                     foreach (KeyValuePair<string, PriceSubscription> kvp in priceSubScriptionDict)
                     {
                         var sub = kvp.Value;
-                        m_tradeSubscription.OrderUpdated -= m_tradeSubscription_OrderUpdated;
-                        m_tradeSubscription.OrderAdded -= m_tradeSubscription_OrderAdded;
-                        m_tradeSubscription.OrderDeleted -= m_tradeSubscription_OrderDeleted;
-                        m_tradeSubscription.OrderFilled -= m_tradeSubscription_OrderFilled;
-                        m_tradeSubscription.OrderRejected -= m_tradeSubscription_OrderRejected;
-                        m_tradeSubscription.Dispose();
-                        m_tradeSubscription = null;
+                        //sub.FieldsUpdated -= HandlePriceDepthUpdate;
+                        sub.FieldsUpdated -= HandleInsideMarketUpdate;
+                        sub.Dispose();
+                        sub = null;
+                    }
+
+                    foreach (KeyValuePair<string, TimeAndSalesSubscription> kvp in timeAndSalesSubscriptionDict)
+                    {
+                        var sub = kvp.Value;
+                        sub.Update -= m_tasSubscription_Updated;
+                        sub.Dispose();
+                        sub = null;
+
                     }
 
                     if (m_tradeSubscription != null)

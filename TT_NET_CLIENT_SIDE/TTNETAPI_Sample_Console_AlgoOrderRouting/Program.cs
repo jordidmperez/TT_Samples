@@ -34,7 +34,8 @@ namespace TTNETAPI_Sample_Console_AlgoOrderRouting
                 //string appSecretKey = "ab8817fb-1d6d-d063-ef97-0e9344df637e:1c3321b1-2e92-8f36-2ee3-0c90c5cfc7eb";
                 //tt_net_sdk.ServiceEnvironment environment = tt_net_sdk.ServiceEnvironment.ProdSim;
 
-                string appSecretKey = "a2d5c54f-5606-e305-528b-4f916a16ca1f:57b8b014-e20a-9365-79b2-2b683aa4954c";
+                //string appSecretKey = "a2d5c54f-5606-e305-528b-4f916a16ca1f:57b8b014-e20a-9365-79b2-2b683aa4954c";
+                string appSecretKey = "d544d3c2-28cc-b93f-2faf-324097b6c3d7:4d3438bc-c7f0-8639-19fd-2309a27c7151";
                 tt_net_sdk.ServiceEnvironment environment = tt_net_sdk.ServiceEnvironment.ProdLive;
 
                 tt_net_sdk.TTAPIOptions apiConfig = new tt_net_sdk.TTAPIOptions(
